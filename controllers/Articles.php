@@ -8,12 +8,19 @@ class Articles extends Controllers
         parent::__construct();
     }
 
+
     public function index()
     {
-
-        // $Article = new Article();
-        // $Articles = $Article->getAll();
         $this->render("index");
+    }
+
+
+    public function shop(){
+
+        $this->render("shop");
+    }
+    public function productDetails(){
+        $this->render("productDetails");
     }
 
     public function ajouter()
