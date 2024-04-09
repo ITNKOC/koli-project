@@ -1,5 +1,5 @@
 <?php
-define('DB_SERVEUR', 'db'); // Adresse du serveur de base de données
+define('DB_SERVEUR', 'localhost'); // Adresse du serveur de base de données
 define('DB_NOM', 'koli'); // Nom de la base de données
 // Data Source Name : driver + adresse serveur + nom bdd + charset à utiliser
 //mysql:host=localhost;dbname=db_livre;charset=utf8;port:3306

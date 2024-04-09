@@ -37,18 +37,18 @@
                         </div>
                         <div class="form-group">
                             <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="password" id="password" placeholder="Password"/>
+                            <input type="password" name="mot_de_passe" id="mot_de_passe" placeholder="Password"/>
                         </div>
                         <div class="form-group">
                             <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                            <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                            <input type="password" name="c_mot_de_passe" id="c_mot_de_passe" placeholder="Repeat your password"/>
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                             <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                         </div>
                         <div class="form-group form-button">
-                            <input type="submit" name="signup"class="form-submit" value="Register"/>
+                            <input type="submit" name="enregistre"class="form-submit" value="Register"/>
                         </div>
                     </form>
                 </div>

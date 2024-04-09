@@ -174,9 +174,9 @@ class Auth extends Model
     public function saveUser($datas)
     {
         $datas['id_role'] = 2;
-        $this->sql = "insert into 
-        Utilisateur(nom, prenom, email, telephone, date_naissance, id_role, mot_de_passe) 
-        values (:nom, :prenom, :email, :telephone, :date_naissance, :id_role, :mot_de_passe)";
+        $this->sql = "INSERT INTO Utilisateur(nom, prenom, email, telephone, date_naissance, id_role, mot_de_passe) 
+                    VALUES (:nom, :prenom, :email, :telephone, :date_naissance, :id_role, :mot_de_passe)";
+        
         return $this->getLines($datas, null);
     }
 

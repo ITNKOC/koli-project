@@ -57,7 +57,6 @@ class Auths extends Controllers{
                     $auth = new Auth();
                     $auth->saveUser($_POST);
                 }
-                var_dump($_SESSION["utilisateur"]);
             }
         }
         $this->render("register");
