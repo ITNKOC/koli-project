@@ -55,6 +55,7 @@
                 <div class="signup-image">
                     <figure><img src="<?= URI."assets/front/img/images/signup-image.jpg"?>" alt="sing up image"></figure>
                     <a href="<?=URI?>auths/login" class="signup-image-link">I am already member</a>
+                    
                 </div>
             </div>
         </div>
