@@ -77,8 +77,16 @@
                 <div class="col-lg-3">
                     <div class="header__right">
                         <div class="header__right__auth">
-                            <a href="#">Login</a>
-                            <a href="#">Register</a>
+                            <?php
+                       
+                            if (isset($_SESSION['utilisateur'])) {
+                                echo  "<a href=".URI."auths/deconnexion>Deconexion</a>";  
+                            }else{
+                                echo  "<a href=".URI."auths/login>Login</a>";
+                            }
+                    
+                            ?>
+                        
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>

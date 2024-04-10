@@ -17,7 +17,7 @@
                     <form method="POST" class="register-form" id="register-form">
                         <div class="form-group">
                             <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="name" id="name" placeholder="Nom"/>
+                            <input type="text" name="nom" id="nom" placeholder="Nom"/>
                         </div>
                         <div class="form-group">
                             <label for="prenom"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label for="dob"><i class="zmdi zmdi-calendar"></i></label>
-                            <input type="date" name="dob" id="dob" placeholder="Date de naissance"/>
+                            <input type="date" name="date_naissance" id="date_naissance" placeholder="Date de naissance"/>
                         </div>
                         <div class="form-group">
                             <label for="pass"><i class="zmdi zmdi-lock"></i></label>
@@ -54,7 +54,8 @@
                 </div>
                 <div class="signup-image">
                     <figure><img src="<?= URI."assets/front/img/images/signup-image.jpg"?>" alt="sing up image"></figure>
-                    <a href="#" class="signup-image-link">I am already member</a>
+                    <a href="<?=URI?>auths/login" class="signup-image-link">I am already member</a>
+                    
                 </div>
             </div>
         </div>
