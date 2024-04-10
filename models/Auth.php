@@ -190,7 +190,7 @@ class Auth extends Model
 
     public function findByEmail()
     {
-        $this->sql = "select * from $this->table where email = :email";
+        $this->sql = "select u.*, r.description from $this->table u join role r on u.id_role = r.id_role  where email = :email";
         $email = ["email" => $this->email];
         return $this->getLines($email, true);
     }

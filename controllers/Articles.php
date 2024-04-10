@@ -15,6 +15,7 @@ class Articles extends Controllers
     }
     public function addCategory()
     {
+        
         if (isset($_POST['nom_categorie'])) {
             if (!$this->estVide($_POST)) {
                 unset($_POST['nom_categorie']);
