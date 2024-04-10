@@ -9,7 +9,7 @@ class Controllers
 
     }
 
-    public function render($fichier, $data = [], $controller = "")
+    public function render($fichier, $data = [],$headerPerso = false)
     {
         if (empty($controller)) {
             $controller = strtolower(get_class($this));

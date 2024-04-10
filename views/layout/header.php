@@ -68,9 +68,9 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="<?= URI."views/articles/index.php " ?>">Home</a></li>
-                            <li><a href="./shop.html">Shop</a></li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            <li><a href="./shop">Shop</a></li>
+                            <li><a href="./blog">Blog</a></li>
+                            <li><a href="./contact">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -98,5 +98,3 @@
         </div>
     </header>
     <!-- Header Section End -->
-
-    

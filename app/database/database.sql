@@ -69,11 +69,12 @@ create table Article
     prix varchar(10) not null,
     courte_description text,
     description text,
+    statut varchar(20),
     quantite int,
     id_categorie int,
     id_sous_categorie int,
-    foreign key (id_categorie) references Categorie (id_categorie) on delete cascade on update cascade
-    foreign key (id_sous_categorie) references SousCategorie(idSousCategory) on delete cascade on update cascade;
+    foreign key (id_categorie) references Categorie (id_categorie) on delete cascade on update cascade,
+    foreign key (id_sous_categorie) references SousCategorie(idSousCategory) on delete cascade on update cascade
 );
 -- Créer la table ImageArticle
 create table ImageArticle

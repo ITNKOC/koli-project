@@ -13,6 +13,37 @@ class Articles extends Controllers
     {
         $this->render("index");
     }
+    public function addCategory()
+    {
+        if (isset($_POST['nom_categorie'])) {
+            if (!$this->estVide($_POST)) {
+                unset($_POST['nom_categorie']);
+                $article = new Article();
+                $article->ajouterCategorie($_POST);
+            }
+        }
+        $this->render("addCategory",[],true);
+    }
+    public function addProduct()
+    {
+        // if (isset($_SESSION['utilisateur'])) {
+            // if (strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN) {
+                if (isset($_POST['addProduct'])) {
+                    if (!$this->estVide($_POST)) {
+                        unset($_POST['addProduct']);
+                        $article = new Article();
+                        $article->ajouterArticle($_POST);
+                        global $oPDO;
+                        $id_article = $oPDO->lastInsertId();
+                        $this->importImage($id_article);
+                    }
+                }
+                $this->render("addProduct",[],true);
+            // }
+            // header("Location: " . URI . "articles/index");
+        // }
+        // header("Location: " . URI . "articles/index");
+    }
 
 
     public function shop(){
@@ -21,28 +52,6 @@ class Articles extends Controllers
     }
     public function productDetails(){
         $this->render("productDetails");
-    }
-
-    public function ajouter()
-    {
-
-        if (isset($_SESSION['Utilisateur'])) {
-            if (strtolower($_SESSION['Utilisateur']->description) === Auth::ADMIN) {
-                if (isset($_POST['ajouter'])) {
-                    if (!$this->estVide($_POST)) {
-                        unset($_POST['ajouter']);
-                        $Article = new Article();
-                        $Article->ajouter($_POST);
-                        global $oPDO;
-                        $id_Article = $oPDO->lastInsertId();
-                        $this->importImage($id_Article);
-                    }
-                }
-                $this->render("ajouter");
-            }
-            header("Location: " . URI . "Articles/index");
-        }
-        header("Location: " . URI . "Articles/index");
     }
 
     function importImage($id_Article)
