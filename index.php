@@ -1,4 +1,6 @@
 <?php
+
+// test 
 session_start();
 define("URI", "http://localhost:8888/koli/");
 define("ROOT", str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
