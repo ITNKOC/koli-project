@@ -17,7 +17,7 @@
                     <form method="POST" class="register-form" id="register-form">
                         <div class="form-group">
                             <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="name" id="name" placeholder="Nom"/>
+                            <input type="text" name="nom" id="nom" placeholder="Nom"/>
                         </div>
                         <div class="form-group">
                             <label for="prenom"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label for="dob"><i class="zmdi zmdi-calendar"></i></label>
-                            <input type="date" name="dob" id="dob" placeholder="Date de naissance"/>
+                            <input type="date" name="date_naissance" id="date_naissance" placeholder="Date de naissance"/>
                         </div>
                         <div class="form-group">
                             <label for="pass"><i class="zmdi zmdi-lock"></i></label>

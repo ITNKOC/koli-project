@@ -97,7 +97,11 @@ class Auth extends Model
      */
     public function setNom($nom)
     {
-        $this->nom = $nom;
+        if (preg_match('/^[a-zA-ZÀ-ÿ\- ]+$/', $nom)) {
+            $this->nom = $nom;
+        } else {
+            throw new InvalidArgumentException('Le nom est invalide.');
+        }
     }
 
     /**
@@ -105,7 +109,11 @@ class Auth extends Model
      */
     public function setPrenom($prenom)
     {
-        $this->prenom = $prenom;
+        if (preg_match('/^[a-zA-ZÀ-ÿ\- ]+$/', $prenom)) {
+            $this->prenom = $prenom;
+        } else {
+            throw new InvalidArgumentException('Le prénom est invalide.');
+        }
     }
 
     /**
@@ -113,7 +121,11 @@ class Auth extends Model
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email)) {
+            $this->email = $email;
+        } else {
+            throw new InvalidArgumentException('L\'email est invalide.');
+        }
     }
 
     /**
@@ -121,7 +133,11 @@ class Auth extends Model
      */
     public function setMotDePasse($mot_de_passe)
     {
-        $this->mot_de_passe = $mot_de_passe;
+        if (preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $mot_de_passe)) {
+            $this->mot_de_passe = $mot_de_passe;
+        } else {
+            throw new InvalidArgumentException('Le mot de passe est invalide.');
+        }
     }
 
     /**
@@ -129,7 +145,11 @@ class Auth extends Model
      */
     public function setDateNaissance($date_naissance)
     {
-        $this->date_naissance = $date_naissance;
+        if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_naissance)) {
+            $this->date_naissance = $date_naissance;
+        } else {
+            throw new InvalidArgumentException('La date de naissance est invalide.');
+        }
     }
 
     /**
@@ -137,7 +157,11 @@ class Auth extends Model
      */
     public function setNumeroTelephone($numero_telephone)
     {
-        $this->numero_telephone = $numero_telephone;
+        if (preg_match('/^\d{3}-\d{3}\(\d{4}\)$/', $numero_telephone)) {
+            $this->numero_telephone = $numero_telephone;
+        } else {
+            throw new InvalidArgumentException('Le numéro de téléphone est invalide.');
+        }
     }
 
     /**
@@ -174,8 +198,8 @@ class Auth extends Model
     public function saveUser($datas)
     {
         $datas['id_role'] = 2;
-        $this->sql = "INSERT INTO Utilisateur(nom, prenom, email, telephone, date_naissance, id_role, mot_de_passe) 
-                    VALUES (:nom, :prenom, :email, :telephone, :date_naissance, :id_role, :mot_de_passe)";
+        $this->sql = "insert into Utilisateur(nom, prenom, email,telephone, date_naissance,id_role, mot_de_passe) 
+        values (:nom, :prenom, :email, :telephone, :date_naissance, :id_role, :mot_de_passe)";
         
         return $this->getLines($datas, null);
     }
