@@ -9,7 +9,7 @@ class Auths extends Controllers{
     public function login(){
 
         if(isset($_SESSION["utilisateur"])){
-            header("Location: ".URI."Koli-project/index");
+            header("Location: ".URI."articles/index");
         }
 
         if(isset($_POST["submit"])){
@@ -22,7 +22,7 @@ class Auths extends Controllers{
                     if(password_verify($mdp, $user->mot_de_passe)){
                         unset($user->mot_de_passe);
                         $_SESSION["utilisateur"] = $user;
-                        header("Location: ".URI."Koli-project/index");
+                        header("Location: ".URI."articles/shop");
                     }else{
                         $erreurs["message"] = "Mot de passe invalid";
                         $this->render("login", $erreurs);
@@ -64,7 +64,7 @@ class Auths extends Controllers{
 
     public function deconnexion(){
         unset($_SESSION["utilisateur"]);
-        header("Location: ".URI."Koli-project/index");
+        header("Location: ".URI."articles/index");
     }
 
     public function index(){
