@@ -97,11 +97,7 @@ class Auth extends Model
      */
     public function setNom($nom)
     {
-        if (preg_match('/^[a-zA-ZÀ-ÿ\- ]+$/', $nom)) {
-            $this->nom = $nom;
-        } else {
-            throw new InvalidArgumentException('Le nom est invalide.');
-        }
+        $this->nom = $nom;
     }
 
     /**
@@ -109,11 +105,7 @@ class Auth extends Model
      */
     public function setPrenom($prenom)
     {
-        if (preg_match('/^[a-zA-ZÀ-ÿ\- ]+$/', $prenom)) {
-            $this->prenom = $prenom;
-        } else {
-            throw new InvalidArgumentException('Le prénom est invalide.');
-        }
+        $this->prenom = $prenom;
     }
 
     /**
@@ -121,11 +113,7 @@ class Auth extends Model
      */
     public function setEmail($email)
     {
-        if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email)) {
-            $this->email = $email;
-        } else {
-            throw new InvalidArgumentException('L\'email est invalide.');
-        }
+        $this->email = $email;
     }
 
     /**
@@ -133,11 +121,7 @@ class Auth extends Model
      */
     public function setMotDePasse($mot_de_passe)
     {
-        if (preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $mot_de_passe)) {
-            $this->mot_de_passe = $mot_de_passe;
-        } else {
-            throw new InvalidArgumentException('Le mot de passe est invalide.');
-        }
+        $this->mot_de_passe = $mot_de_passe;
     }
 
     /**
@@ -145,11 +129,7 @@ class Auth extends Model
      */
     public function setDateNaissance($date_naissance)
     {
-        if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_naissance)) {
-            $this->date_naissance = $date_naissance;
-        } else {
-            throw new InvalidArgumentException('La date de naissance est invalide.');
-        }
+        $this->date_naissance = $date_naissance;
     }
 
     /**
@@ -157,11 +137,7 @@ class Auth extends Model
      */
     public function setTelephone($telephone)
     {
-        if (preg_match('/^\d{3}-\d{3}\(\d{4}\)$/', $telephone)) {
-            $this->telephone = $telephone;
-        } else {
-            echo'Le numéro de téléphone est invalide.';
-        }
+        $this->telephone = $telephone;  
     }
 
     /**
