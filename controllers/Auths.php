@@ -56,7 +56,9 @@ class Auths extends Controllers{
                     $_POST['mot_de_passe'] = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
                     $auth = new Auth();
                     $auth->saveUser($_POST);
+                    header("Location: ".URI."auths/login");
                 }
+                
             }
         }
         $this->render("register");

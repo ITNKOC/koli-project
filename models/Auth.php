@@ -7,7 +7,7 @@ class Auth extends Model
     private $email;
     private $mot_de_passe;
     private $date_naissance;
-    private $numero_telephone;
+    private $telephone;
     private $path_image;
     private $id_role;
 
@@ -79,9 +79,9 @@ class Auth extends Model
     /**
      * @return mixed
      */
-    public function getNumeroTelephone()
+    public function getTelephone()
     {
-        return $this->numero_telephone;
+        return $this->telephone;
     }
 
     /**
@@ -155,12 +155,12 @@ class Auth extends Model
     /**
      * @param mixed $numero_telephone
      */
-    public function setNumeroTelephone($numero_telephone)
+    public function setTelephone($telephone)
     {
-        if (preg_match('/^\d{3}-\d{3}\(\d{4}\)$/', $numero_telephone)) {
-            $this->numero_telephone = $numero_telephone;
+        if (preg_match('/^\d{3}-\d{3}\(\d{4}\)$/', $telephone)) {
+            $this->telephone = $telephone;
         } else {
-            throw new InvalidArgumentException('Le numéro de téléphone est invalide.');
+            echo'Le numéro de téléphone est invalide.';
         }
     }
 
@@ -203,6 +203,4 @@ class Auth extends Model
         
         return $this->getLines($datas, null);
     }
-
-
 }
