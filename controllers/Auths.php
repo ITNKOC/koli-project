@@ -25,7 +25,7 @@ class Auths extends Controllers{
                         if (strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN){
                         header("Location: ".URI."articles/addCategory");
                         }else{
-                        header("Location: ".URI."articles/shop");
+                        header("Location: ".URI."articles/addCategory");
                         }
                     }else{
                         $erreurs["message"] = "Mot de passe invalid";
