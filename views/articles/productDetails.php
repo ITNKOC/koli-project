@@ -44,7 +44,7 @@
                                 src="<?= URI."assets/front/img/product/details/product-2.jpg"?>" alt="">
                             <img data-hash="product-4" class="product__big__img"
                                 src="<?= URI."assets/front/img/product/details/product-4.jpg"?>" alt="">
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
