@@ -15,6 +15,11 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
+    <link rel="stylesheet"
+        href="<?= URI."assets/front/fonts/fonts/material-icon/css/material-design-iconic-font.min.css"?>">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="<?= URI."assets/front/css/styleTemp.css"?>">
     <link rel="stylesheet" href="<?= URI."assets/front/css/bootstrap.min.css" ?>" type=" text/css">
     <link rel="stylesheet" href="<?= URI."assets/front/css/font-awesome.min.css"?>" type=" text/css">
     <link rel="stylesheet" href="<?= URI."assets/front/css/elegant-icons.css"?>" type=" text/css">
@@ -86,7 +91,7 @@
                             }
                     
                             ?>
-                        
+
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>

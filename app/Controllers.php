@@ -26,10 +26,9 @@ class Controllers
 
     }
 
-    public function estVide($datas)
-    {
-        foreach ($datas as $data) {
-            if (empty($data)) {
+    public function estVide($data) {
+        foreach($data as $value) {
+            if(empty($value)) {
                 return true;
             }
         }

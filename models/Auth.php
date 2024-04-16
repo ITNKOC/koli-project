@@ -1,6 +1,8 @@
 <?php
 class Auth extends Model
 {
+    const ADMIN = "admin";
+    const CLIENT = "client";
     private $id_utilisateur;
     private $nom;
     private $prenom;

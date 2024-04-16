@@ -22,7 +22,11 @@ class Auths extends Controllers{
                     if(password_verify($mdp, $user->mot_de_passe)){
                         unset($user->mot_de_passe);
                         $_SESSION["utilisateur"] = $user;
+                        if (strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN){
+                        header("Location: ".URI."articles/addCategory");
+                        }else{
                         header("Location: ".URI."articles/shop");
+                        }
                     }else{
                         $erreurs["message"] = "Mot de passe invalid";
                         $this->render("login", $erreurs);
@@ -56,6 +60,7 @@ class Auths extends Controllers{
                     $_POST['mot_de_passe'] = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
                     $auth = new Auth();
                     $auth->saveUser($_POST);
+                    header("Location: ".URI."auths/login");
                 }
             }
         }

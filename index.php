@@ -2,7 +2,7 @@
 
 
 session_start();
-define("URI", "http://localhost:8888/koli/");
+define("URI", "http://localhost:8888/projet/koli-project/");
 define("ROOT", str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
 
 require_once ROOT . "autoload.php";
@@ -32,4 +32,3 @@ if ($params[0] != "") {
 } else {
     echo "Add param controller";
 }
-// korerjg testojlkjlksdclkslskdvj ajouter produit

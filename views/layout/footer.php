@@ -95,6 +95,8 @@
 <script src=" <?= URI."assets/front/js/owl.carousel.min.js"?>"></script>
 <script src="<?= URI."assets/front/js/jquery.nicescroll.min.js"?>"></script>
 <script src=" <?= URI."assets/front/js/main.js"?>"></script>
+<script src="<?= URI."assets/front/vendor/jquery/jquery.min.js"?>"></script>
+<script src="<?= URI."assets/front/js/js/main.js"?>"></script>
 </body>
 
 </html>

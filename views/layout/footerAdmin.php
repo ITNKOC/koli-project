@@ -15,3 +15,6 @@
 <script src="<?=URI;?>assets/back/plugins/sweetalert/sweetalerts.min.js"></script>
 
 <script src="<?=URI;?>assets/back/js/script.js"></script>
+</body>
+
+</html>

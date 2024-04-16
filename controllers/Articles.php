@@ -14,48 +14,71 @@ class Articles extends Controllers
         $this->render("index");
     }
     public function addCategory()
-    {
-        
-        if (isset($_POST['nom_categorie'])) {
-            if (!$this->estVide($_POST)) {
-                unset($_POST['nom_categorie']);
-                $article = new Article();
-                $article->ajouterCategorie($_POST);
+{
+    if (isset($_SESSION['utilisateur']) && strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN) {
+        if (isset($_POST['nom_categorie']) && !$this->estVide($_POST)) {
+            $article = new Article();
+            try {
+                $article->ajouterCategorie($_POST['nom_categorie']);
+                
+                $this->render("addCategory", ["success" => true], true);
+            } catch (Exception $e) {
+
+                $this->render("addCategory", ["error" => $e->getMessage()], true);
+            }
+        } else {
+
+            $this->render("addCategory", ["error" => "Category name is required"], true);
+        }
+    } else {
+        header("Location: " . URI . "articles/index");
+    }
+}
+public function addProduct()
+{
+    if (isset($_SESSION['utilisateur']) && strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN) {
+        $article = new Article();
+        $categories = $article->getCategories();
+
+        if (isset($_POST['addProduct'])) {
+            // Vérification des champs requis
+            $required_fields = ['nomArticle', 'id_categorie', 'quantite', 'courte_description', 'description', 'prix', 'statut'];
+            $missing_fields = [];
+            foreach ($required_fields as $field) {
+                if (!isset($_POST[$field]) || empty(trim($_POST[$field]))) {
+                    $missing_fields[] = $field;
+                }
+            }
+
+            if (!empty($missing_fields)) {
+                $this->render("addProduct", ["categories" => $categories, "error" => "The following fields are required: " . implode(', ', $missing_fields)], true);
+                return;
+            }
+
+            // Tous les champs requis sont remplis, procéder à l'ajout du produit
+            unset($_POST['addProduct']);
+            try {
+                $article->ajouterArticle($_POST);
+                $id_article = $article->getLastInsertedId();
+                $this->importImage($id_article);
+                $this->render("addProduct", ["categories" => $categories, "success" => true], true);
+                return;
+            } catch (Exception $e) {
+                $this->render("addProduct", ["categories" => $categories, "error" => $e->getMessage()], true);
+                return;
             }
         }
-        $this->render("addCategory",[],true);
+
+        $this->render("addProduct", ["categories" => $categories], true);
+        return;
+    } else {
+        header("Location: " . URI . "articles/index");
+        return;
     }
-    public function addProduct()
-    {
-        // if (isset($_SESSION['utilisateur'])) {
-            // if (strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN) {
-                if (isset($_POST['addProduct'])) {
-                    if (!$this->estVide($_POST)) {
-                        unset($_POST['addProduct']);
-                        $article = new Article();
-                        $article->ajouterArticle($_POST);
-                        global $oPDO;
-                        $id_article = $oPDO->lastInsertId();
-                        $this->importImage($id_article);
-                    }
-                }
-                $this->render("addProduct",[],true);
-            // }
-            // header("Location: " . URI . "articles/index");
-        // }
-        // header("Location: " . URI . "articles/index");
-    }
+}
 
 
-    public function shop(){
-
-        $this->render("shop");
-    }
-    public function productDetails(){
-        $this->render("productDetails");
-    }
-
-    function importImage($id_Article)
+function importImage($id_article)
     {
         if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
             $image_name = $_FILES["image"]["name"];
@@ -74,13 +97,12 @@ class Articles extends Controllers
             // Déplacer l'image téléchargée vers le dossier spécifié
             if (move_uploaded_file($image_tmp, ROOT . $image_destination)) {
                 $image = new Image();
-                $data = ["id_Article" => $id_Article,
+                $data = ["id_article" => $id_article,
                     "chemin_image" => $image_destination];
                 $image->ajouter($data);
             }
         }
     }
-
     public function admin()
     {
 
@@ -89,6 +111,14 @@ class Articles extends Controllers
         $this->render("admin", compact('Articles'));
 
     }
+    public function shop(){
+
+        $this->render("shop");
+    }
+    public function productDetails(){
+        $this->render("productDetails");
+    }
+
 
     public function supprimer($id_Article)
     {

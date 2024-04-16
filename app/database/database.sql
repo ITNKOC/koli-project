@@ -53,13 +53,6 @@ create table Categorie
     id_categorie int primary key auto_increment,
     nom_categorie varchar(100) not null
 );
-create table SousCategorie
-(
-    idSousCategory int primary key auto_increment,
-    id_categorie     int,
-    nomSousCategory varchar(100) not null,
-    foreign key (id_categorie) references Categorie (id_categorie) on delete cascade on update cascade
-);
 
 -- Créer la table Article
 create table Article
@@ -72,9 +65,7 @@ create table Article
     statut varchar(20),
     quantite int,
     id_categorie int,
-    id_sous_categorie int,
     foreign key (id_categorie) references Categorie (id_categorie) on delete cascade on update cascade,
-    foreign key (id_sous_categorie) references SousCategorie(idSousCategory) on delete cascade on update cascade
 );
 -- Créer la table ImageArticle
 create table ImageArticle

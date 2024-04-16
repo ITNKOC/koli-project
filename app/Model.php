@@ -14,13 +14,12 @@ class Model
 
     public function getLines($params = [], $estUneligne = false)
     {
-        var_dump($params);
         global $oPDO;
         $stmt = $oPDO->prepare($this->sql);
         foreach ($params as $paramKey => $paramValue) {
             $stmt->bindValue(":" . trim($paramKey), trim($paramValue));
         }
-        // insert, update, delete
+        // Exécute la requête
         $result = $stmt->execute();
         if ($estUneligne === null) {
             return $result;
