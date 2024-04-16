@@ -17,17 +17,36 @@ class Article extends Model
 
     public function getAll()
     {
-        $this->sql = "SELECT a.*, i.chemin_Image FROM " . $this->table . " a 
-            LEFT JOIN ImageArticle i ON a.id_article = i.id_article";
-        return $this->getLines();
+        $this->sql = "SELECT a.id_article, 
+        a.nomArticle, 
+        a.prix, 
+        a.courte_description, 
+        a.description, 
+        a.statut, 
+        a.quantite, 
+        i.chemin_image
+        FROM " . $this->table . " AS a
+        LEFT JOIN ImageArticle AS i ON a.id_article = i.id_article";
+        return $this->getLines([],false);
     }
 
     public function getProductById($data)
-    {
-        $this->sql = "SELECT * FROM " . $this->table . " f 
-            LEFT JOIN ImageArticle i ON f.id_article = i.id_article WHERE f.id_article = :id_article";
-        return $this->getLines($data, true);
-    }
+{
+    $this->sql = "SELECT  a.id_article, 
+    a.nomArticle, 
+    a.prix, 
+    a.courte_description, 
+    a.description, 
+    a.statut, 
+    a.quantite, 
+    i.chemin_image 
+    FROM " . $this->table . " AS a
+    LEFT JOIN imagearticle AS i ON a.id_article = i.id_article 
+    WHERE a.id_article = :id_article";
+
+    return $this->getLines($data, true);
+}
+
 
     public function getArticle(){
         $this->sql = "SELECT * FROM " . $this->table;

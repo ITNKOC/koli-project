@@ -114,20 +114,34 @@ class Articles extends Controllers
     }
 
     public function shop(){
+        $articles = [];
         $article = new Article();
         $articles = $article->getAll();
-        
         $categories = $article->getCategories();
+        
+
         $this->render("shop",["articles"=>$articles,"categories"=>$categories],false);
     }
 
     public function productDetails($id_article){
         $article = new Article();
-        $data = ["id_article"=> $id_article];
+        $data = [
+            "id_article" => $id_article
+        ];
         $articles = $article->getProductById($data);
-        var_dump($articles);
-        
-        $this->render("productDetails",["articles"=>$articles],false);
+    
+        // Vérifier si des articles ont été récupérés
+        if ($articles) {
+            // Articles trouvés, afficher la page des détails du produit
+            $this->render("productDetails", ["articles" => $articles], false);
+        } else {
+            // Aucun article trouvé avec cet identifiant, rediriger ou afficher un message d'erreur
+            // Exemple de redirection :
+            // header("Location: /erreur404"); 
+            // exit();
+            // Ou afficher un message d'erreur dans la vue
+            echo "Aucun article trouvé avec cet identifiant.";
+        }
     }
 
 
@@ -141,6 +155,23 @@ class Articles extends Controllers
             $Article->delete($data);
             header("Location: " . URI . "Articles/admin");
         }
+    }
+
+    public function editCategory($id_categorie){
+        if (is_numeric($id_categorie)) {
+            $categorie = new Article();
+            $data = [
+                "id_categorie" => $id_categorie
+            ];
+            $categorie->updateCategory($data);
+        
+        $this->render("editCategory",[],true);
+    }
+}
+    public function categoryList(){
+        $categorie = new Article;
+        $categories = $categorie->getCategories();
+        $this->render("categoryList",["categories"=>$categories],true);
     }
 
 
