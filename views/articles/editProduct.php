@@ -81,15 +81,15 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <button type="submit" class="btn btn-submit me-2" name="updateProduct">Submit</button>
-                        <a href="productlist.html" class="btn btn-cancel">Cancel</a>
+                        <input type="submit" class="btn btn-submit me-2" name="updateProduct" value="Update" />
+                        <a href="categorylist.html" class="btn btn-cancel">Cancel</a>
                     </div>
                 </form>
             </div>
         </div>
 
         <?php if (isset($success) && $success): ?>
-        <div class="alert alert-success">Product added successfully!</div>
+        <div class="alert alert-success">Product update successfully!</div>
         <?php endif; ?>
         <?php if (isset($error)): ?>
         <div class="alert alert-danger"><?php echo $error; ?></div>
