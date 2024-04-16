@@ -152,7 +152,7 @@ class Articles extends Controllers
     public function productDetails($id_article){
         $article = new Article();
         $data = [
-            'id_article' => $id_article
+            "id_article" => $id_article
         ];
         $articles = $article->getProductById($data);
     
@@ -182,6 +182,7 @@ class Articles extends Controllers
             header("Location: " . URI . "Articles/productList");
         }
     }
+<<<<<<< HEAD
     public function editCategory($id_categorie) {
         $categorieModel = new Article();
         $category = $categorieModel->getCategoryById($id_categorie);
@@ -199,6 +200,16 @@ class Articles extends Controllers
                 $error = "Category name cannot be empty.";
             }
         }
+=======
+
+    public function editCategory($id_categorie){
+        if (is_numeric($id_categorie)) {
+            $categorie = new Article();
+            $data = [
+                "id_categorie" => $id_categorie
+            ];
+            $categorie->updateCategory($data);
+>>>>>>> 6c9b3ee827d2580a2871f69868a541c1958a3fff
         
         $this->render("editCategory", compact('category', 'success', 'error'), true);
     }

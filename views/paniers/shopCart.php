@@ -31,20 +31,21 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                <?php 
+                                $cmd = 1; 
+                                var_dump($articles);
+                                foreach($articles as $cart_item) {
+                                    $quantite = $cart_item[0];
+                                    $article = $cart_item[1];
+                                ?>
+                                        
                                     <td class="cart__product__item">
-                                        <img src="<?= URI."assets/front/img/shop-cart/cp-1.jpg"?>">
+                                        <img src="<?= isset($article->chemin_image) ? URI . $article->chemin_image : URI . "assets/front/img/shop/shop-1.jpg" ?>">
                                         <div class="cart__product__item__title">
-                                            <h6>Chain bucket bag</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
+                                            <h6><?= $article->nom ?></h6>
                                         </div>
                                     </td>
-                                    <td class="cart__price">$ 150.0</td>
+                                    <td class="cart__price"><?= $articleInfo->prix ?>$</td>
                                     <td class="cart__quantity">
                                         <div class="pro-qty">
                                             <input type="text" value="1">
@@ -53,11 +54,12 @@
                                     <td class="cart__total">$ 300.0</td>
                                     <td class="cart__close"><span class="icon_close"></span></td>
                                 </tr>
+                                <?php } ?>
                                 <tr>
                                     <td class="cart__product__item">
                                         <img src="<?= URI."assets/front/img/shop-cart/cp-2.jpg"?>" alt="">
                                         <div class="cart__product__item__title">
-                                            <h6>Zip-pockets pebbled tote briefcase</h6>
+                                            <h6><?= $article->nom ?></h6>
                                             <div class="rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>

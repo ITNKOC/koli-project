@@ -72,7 +72,7 @@
                 <div class="col-xl-6 col-lg-7">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="<?= URI."views/articles/index.php " ?>">Home</a></li>
+                            <li class="active"><a href="<?= URI."articles/index " ?>">Home</a></li>
                             <li><a href="./shop">Shop</a></li>
                             <li><a href="./blog">Blog</a></li>
                             <li><a href="./contact">Contact</a></li>

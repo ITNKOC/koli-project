@@ -18,47 +18,48 @@
 <section class="product-details spad">
     <div class="container">
         <div class="row">
-            <?php if ($articles) : ?>
             <?php foreach($articles as $article) :?>
-
             <div class="col-lg-6">
                 <div class="product__details__pic">
-                    <?= var_dump($article)?>
                     <div class="product__details__pic__left product__thumb nice-scroll">
                         <a class="pt active" href="#product-1">
-                            <img src="<?=(isset($article->chemin_image)) ?
-                                                URI . $article->chemin_image :
+                            <img src="<?=(isset($article->chemin_image)) ? 
+                                                URI . $article->chemin_image : 
                                                 URI . "assets/image.svg"  ?>" alt="">
                         </a>
                         <a class="pt" href="#product-2">
-                            <img src="<?=(isset($article->chemin_image)) ?
-                                                URI . $article->chemin_image :
+                            <img src="<?=(isset($article->chemin_image)) ? 
+                                                URI . $article->chemin_image : 
                                                 URI . "assets/image.svg"  ?>" alt="">
                         </a>
                         <a class="pt" href="#product-3">
-                            <img src="<?=(isset($article->chemin_image)) ?
-                                                URI . $article->chemin_image :
+                            <img src="<?=(isset($article->chemin_image)) ? 
+                                                URI . $article->chemin_image : 
                                                 URI . "assets/image.svg"  ?>" alt="">
                         </a>
                         <a class="pt" href="#product-4">
-                            <img src="<?=(isset($article->chemin_image)) ?
-                                                URI . $article->chemin_image :
+                            <img src="<?=(isset($article->chemin_image)) ? 
+                                                URI . $article->chemin_image : 
                                                 URI . "assets/image.svg"  ?>" alt="">
                         </a>
                     </div>
                     <div class="product__details__slider__content">
                         <div class="product__details__pic__slider owl-carousel">
-                            <img data-hash="product-1" class="product__big__img" src="<?=(isset($article->chemin_image)) ?
-                                                URI . $article->chemin_image :
+                            <img data-hash="product-1" class="product__big__img"
+                                src="<?=(isset($article->chemin_image)) ? 
+                                                URI . $article->chemin_image : 
                                                 URI . "assets/image.svg"  ?>" alt="">
-                            <img data-hash="product-2" class="product__big__img" src="<?=(isset($article->chemin_image)) ?
-                                                URI . $article->chemin_image :
+                            <img data-hash="product-2" class="product__big__img"
+                                src="<?=(isset($article->chemin_image)) ? 
+                                                URI . $article->chemin_image : 
                                                 URI . "assets/image.svg"  ?>" alt="">
-                            <img data-hash="product-3" class="product__big__img" src="<?=(isset($article->chemin_image)) ?
-                                                URI . $article->chemin_image :
+                            <img data-hash="product-3" class="product__big__img"
+                                src="<?=(isset($article->chemin_image)) ? 
+                                                URI . $article->chemin_image : 
                                                 URI . "assets/image.svg"  ?>" alt="">
-                            <img data-hash="product-4" class="product__big__img" src="<?=(isset($article->chemin_image)) ?
-                                                URI . $article->chemin_image :
+                            <img data-hash="product-4" class="product__big__img"
+                                src="<?=(isset($article->chemin_image)) ? 
+                                                URI . $article->chemin_image : 
                                                 URI . "assets/image.svg"  ?>" alt="">
                         </div>
                     </div>
@@ -76,7 +77,7 @@
                                 <input type="text" value="1">
                             </div>
                         </div>
-                        <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
+                        <a href="<?=URI?>paniers/shopCart" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
                         <ul>
                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                             <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
@@ -106,7 +107,6 @@
                     </div>
                 </div>
                 <?php endforeach; ?>
-                <?php endif; ?>
             </div>
         </div>
         <div class="row">
@@ -273,3 +273,4 @@
         </div>
     </div>
 </div>
+<!-- Instagram End -->

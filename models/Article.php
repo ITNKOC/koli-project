@@ -43,7 +43,7 @@ class Article extends Model
     a.quantite, 
     i.chemin_image 
     FROM " . $this->table . " AS a
-    LEFT JOIN ImageArticle AS i ON a.id_article = i.id_article 
+    LEFT JOIN imagearticle AS i ON a.id_article = i.id_article 
     WHERE a.id_article = :id_article";
 
     return $this->getLines($data, true);
