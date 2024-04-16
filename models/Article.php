@@ -14,22 +14,24 @@ class Article extends Model
         global $oPDO;
         return $oPDO->lastInsertId();
     }
-
     public function getAll()
     {
-        $this->sql = "SELECT a.id_article, 
-        a.nomArticle, 
-        a.prix, 
-        a.courte_description, 
-        a.description, 
-        a.statut, 
-        a.quantite, 
-        i.chemin_image
-        FROM " . $this->table . " AS a
-        LEFT JOIN ImageArticle AS i ON a.id_article = i.id_article";
+        $this->sql = "SELECT
+            a.id_article, 
+            a.nomArticle, 
+            a.prix, 
+            a.courte_description, 
+            a.description, 
+            a.statut, 
+            a.quantite, 
+            i.chemin_image,
+            c.nom_categorie
+            FROM " . $this->table . " AS a
+            LEFT JOIN ImageArticle AS i ON a.id_article = i.id_article
+            LEFT JOIN Categorie AS c ON a.id_categorie = c.id_categorie";
         return $this->getLines([],false);
     }
-
+    
     public function getProductById($data)
 {
     $this->sql = "SELECT  a.id_article, 
@@ -64,6 +66,11 @@ class Article extends Model
         $this->sql = "SELECT * FROM categorie";
         return $this->getLines([], false); 
     }
+    public function getCategoryById($id_categorie) {
+        $this->sql = "SELECT * FROM Categorie WHERE id_categorie = :id_categorie";
+        $params = ['id_categorie' => $id_categorie];
+        return $this->getLines($params ,true);
+    }
     
     public function ajouterArticle($data)
     {
@@ -74,11 +81,11 @@ class Article extends Model
 
     public function update($data)
     {
-        $this->sql = "UPDATE " . $this->table . " SET nomArticle = :nomArticle, prix = :prix, desciption = :desciption, courte_description = :courte_description, quantite = :quantite WHERE id_article = :id";
-        $this->getLines($data, null);
+        $this->sql = "UPDATE " . $this->table . " SET nomArticle = :nomArticle, prix = :prix, courte_description = :courte_description, description = :description, statut = :statut, quantite = :quantite, id_categorie = :id_categorie WHERE id_article = :id_article";
+        return $this->getLines($data, null);
     }
-    public function updateCategory($data)
-    {
+    
+    public function updateCategory($data) {
         $this->sql = "UPDATE Categorie SET nom_categorie = :nom_categorie WHERE id_categorie = :id_categorie";
         $this->getLines($data, null);
     }

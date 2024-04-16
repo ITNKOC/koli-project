@@ -103,6 +103,32 @@ class Articles extends Controllers
             }
         }
     }
+
+    function EditImportImage($id_article)
+    {
+        if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
+            $image_name = $_FILES["image"]["name"];
+            $image_tmp = $_FILES["image"]["tmp_name"];
+            $image_destination = "assets/images/" . basename($image_name); // Chemin de destination du fichier sur le serveur
+
+            // Vérifier que le fichier est une image (facultatif mais recommandé)
+            // images/a-2-1634829071.JPG
+            $image_type = strtolower(pathinfo($image_destination, PATHINFO_EXTENSION));
+            // jpg
+            if (!in_array($image_type, array("jpg", "jpeg", "png", "gif"))) {
+                echo "Seules les images JPG, JPEG, PNG et GIF sont autorisées.";
+                exit();
+            }
+
+            // Déplacer l'image téléchargée vers le dossier spécifié
+            if (move_uploaded_file($image_tmp, ROOT . $image_destination)) {
+                $image = new Image();
+                $data = ["id_article" => $id_article,
+                    "chemin_image" => $image_destination];
+                $image->update($data);
+            }
+        }
+    }
     
     public function admin()
     {
@@ -156,22 +182,97 @@ class Articles extends Controllers
             header("Location: " . URI . "Articles/admin");
         }
     }
-    public function editCategory($id_categorie){
-        if (is_numeric($id_categorie)) {
-            $categorie = new Article();
-            $data = [
-                "id_categorie" => $id_categorie
-            ];
-            $categorie->updateCategory($data);
+    public function editCategory($id_categorie) {
+        $categorieModel = new Article();
+        $category = $categorieModel->getCategoryById($id_categorie);
+    
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateCategory'])) {
+            $nom_categorie = $_POST['nom_categorie'];
+            if (!empty($nom_categorie)) {
+                $data = [
+                    "id_categorie" => $id_categorie,
+                    "nom_categorie" => $nom_categorie
+                ];
+                $categorieModel->updateCategory($data);
+                $success = true;
+            } else {
+                $error = "Category name cannot be empty.";
+            }
+        }
         
-        $this->render("editCategory",[],true);
+        $this->render("editCategory", compact('category', 'success', 'error'), true);
     }
-}
+    
+    
     public function categoryList(){
         $categorie = new Article;
         $categories = $categorie->getCategories();
         $this->render("categoryList",["categories"=>$categories],true);
     }
+
+    public function productList(){
+        $articles = [];
+        $article = new Article();
+        $articles = $article->getAll();
+        $this->render("productList",["articles"=>$articles],true);
+    }
+
+    
+    public function editProduct($id_article)
+    {
+        if (isset($_SESSION['utilisateur']) && strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN) {
+            $article = new Article();
+            $categories = $article->getCategories();
+            $product = $article->getProductById(['id_article' => $id_article]);
+    
+            if (isset($_POST['updateProduct'])) {
+                // Vérification des champs requis
+                $required_fields = ['nomArticle', 'id_categorie', 'quantite', 'courte_description', 'description', 'prix', 'statut'];
+                $missing_fields = [];
+                foreach ($required_fields as $field) {
+                    if (!isset($_POST[$field]) || empty(trim($_POST[$field]))) {
+                        $missing_fields[] = $field;
+                    }
+                }
+    
+                if (!empty($missing_fields)) {
+                    $this->render("editProduct", ["product" => $product, "categories" => $categories, "error" => "The following fields are required: " . implode(', ', $missing_fields)], true);
+                    return;
+                }
+    
+                // Tous les champs requis sont remplis, procéder à la mise à jour du produit
+                try {
+                    $data = [
+                        'id_article' => $id_article,
+                        'nomArticle' => $_POST['nomArticle'],
+                        'id_categorie' => $_POST['id_categorie'],
+                        'quantite' => $_POST['quantite'],
+                        'courte_description' => $_POST['courte_description'],
+                        'description' => $_POST['description'],
+                        'prix' => $_POST['prix'],
+                        'statut' => $_POST['statut']
+                    ];
+                    $article->update($data);
+                    
+                    // Importer l'image
+                    $this->EditImportImage($id_article);
+                
+                    $this->render("editProduct", ["product" => $product, "categories" => $categories, "success" => true], true);
+                    return;
+                } catch (Exception $e) {
+                    $this->render("editProduct", ["product" => $product, "categories" => $categories, "error" => $e->getMessage()], true);
+                    return;
+                }
+            }
+    
+            $this->render("editProduct", ["product" => $product, "categories" => $categories], true);
+            return;
+        } else {
+            header("Location: " . URI . "articles/index");
+            return;
+        }
+    }
+    
 
 
 }

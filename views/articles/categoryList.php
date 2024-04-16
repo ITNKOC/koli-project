@@ -110,7 +110,7 @@
                                 </td>
 
                                 <td>
-                                    <a class="me-3" href=>
+                                    <a class="me-3" href="<?=URI?>articles/editCategory/<?=$category->id_categorie?>">
                                         <img src="<?= URI ?>assets/back/img/icons/edit.svg" alt="img">
                                     </a>
                                     <a class="me-3 confirm-text" href="">
