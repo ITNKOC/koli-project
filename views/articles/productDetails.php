@@ -12,7 +12,7 @@
         </div>
     </div>
 </div>
-<!-- Breadcrumb End --> 
+<!-- Breadcrumb End -->
 
 <!-- Product Details Section Begin -->
 <section class="product-details spad">
