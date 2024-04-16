@@ -62,6 +62,7 @@ class Auths extends Controllers{
                     $auth->saveUser($_POST);
                     header("Location: ".URI."auths/login");
                 }
+                
             }
         }
         $this->render("register");
