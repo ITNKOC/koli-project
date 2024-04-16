@@ -103,6 +103,7 @@ class Articles extends Controllers
             }
         }
     }
+    
     public function admin()
     {
 
@@ -111,10 +112,13 @@ class Articles extends Controllers
         $this->render("admin", compact('Articles'));
 
     }
-    public function shop(){
 
-        $this->render("shop");
+    public function shop(){
+        $article = new Article();
+        $articles = $article->getAll();
+        $this->render("shop",["articles"=>$articles],false);
     }
+
     public function productDetails(){
         $this->render("productDetails");
     }

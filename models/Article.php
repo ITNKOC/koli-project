@@ -29,6 +29,11 @@ class Article extends Model
         return $this->getLines($data, true);
     }
 
+    public function getArticle(){
+        $this->sql = "SELECT * FROM " . $this->table;
+        return $this->getLines([], false);
+    }
+
     public function ajouterCategorie($nom_categorie)
     {
         $this->sql = "INSERT INTO categorie (nom_categorie) VALUES (:nom_categorie)";
