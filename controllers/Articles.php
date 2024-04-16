@@ -116,11 +116,18 @@ class Articles extends Controllers
     public function shop(){
         $article = new Article();
         $articles = $article->getAll();
-        $this->render("shop",["articles"=>$articles],false);
+        
+        $categories = $article->getCategories();
+        $this->render("shop",["articles"=>$articles,"categories"=>$categories],false);
     }
 
-    public function productDetails(){
-        $this->render("productDetails");
+    public function productDetails($id_article){
+        $article = new Article();
+        $data = ["id_article"=> $id_article];
+        $articles = $article->getProductById($data);
+        var_dump($articles);
+        
+        $this->render("productDetails",["articles"=>$articles],false);
     }
 
 
