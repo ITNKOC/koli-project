@@ -131,6 +131,11 @@ function importImage($id_article)
             header("Location: " . URI . "Articles/admin");
         }
     }
+    public function categoryList(){
+        $categorie = new Article;
+        $categories = $categorie->getCategories();
+        $this->render("categoryList",["categories"=>$categories],true);
+    }
 
 
 }
