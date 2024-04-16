@@ -179,7 +179,7 @@ class Articles extends Controllers
                 "id_Article" => $id_Article
             ];
             $Article->delete($data);
-            header("Location: " . URI . "Articles/admin");
+            header("Location: " . URI . "Articles/productList");
         }
     }
     public function editCategory($id_categorie) {

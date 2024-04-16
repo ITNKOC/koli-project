@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-lg-12">
                         <input type="submit" class="btn btn-submit me-2" name="updateProduct" value="Update" />
-                        <a href="categorylist.html" class="btn btn-cancel">Cancel</a>
+                        <a href="<?=URI?>articles/productList" class="btn btn-cancel">Cancel</a>
                     </div>
                 </form>
             </div>

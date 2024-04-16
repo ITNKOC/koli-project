@@ -145,7 +145,7 @@
                                     <a class="me-3" href="<?=URI?>articles/editProduct/<?=$article->id_article ?>">
                                         <img src="<?=URI?>assets/back/img/icons/edit.svg" alt="img">
                                     </a>
-                                    <a class="confirm-text" href="javascript:void(0);">
+                                    <a class="confirm-text" href="<?=URI?>articles/supprimer/<?=$article->id_article?>">
                                         <img src="<?=URI?>assets/back/img/icons/delete.svg" alt="img">
                                     </a>
                                 </td>
