@@ -14,7 +14,7 @@ class Articles extends Controllers
         $this->render("index");
     }
     public function addCategory()
-{
+    {
     if (isset($_SESSION['utilisateur']) && strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN) {
         if (isset($_POST['nom_categorie']) && !$this->estVide($_POST)) {
             $article = new Article();
@@ -33,52 +33,52 @@ class Articles extends Controllers
     } else {
         header("Location: " . URI . "articles/index");
     }
-}
-public function addProduct()
-{
-    if (isset($_SESSION['utilisateur']) && strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN) {
-        $article = new Article();
-        $categories = $article->getCategories();
+    }
+    public function addProduct()
+    {
+        if (isset($_SESSION['utilisateur']) && strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN) {
+            $article = new Article();
+            $categories = $article->getCategories();
 
-        if (isset($_POST['addProduct'])) {
-            // Vérification des champs requis
-            $required_fields = ['nomArticle', 'id_categorie', 'quantite', 'courte_description', 'description', 'prix', 'statut'];
-            $missing_fields = [];
-            foreach ($required_fields as $field) {
-                if (!isset($_POST[$field]) || empty(trim($_POST[$field]))) {
-                    $missing_fields[] = $field;
+            if (isset($_POST['addProduct'])) {
+                // Vérification des champs requis
+                $required_fields = ['nomArticle', 'id_categorie', 'quantite', 'courte_description', 'description', 'prix', 'statut'];
+                $missing_fields = [];
+                foreach ($required_fields as $field) {
+                    if (!isset($_POST[$field]) || empty(trim($_POST[$field]))) {
+                        $missing_fields[] = $field;
+                    }
+                }
+
+                if (!empty($missing_fields)) {
+                    $this->render("addProduct", ["categories" => $categories, "error" => "The following fields are required: " . implode(', ', $missing_fields)], true);
+                    return;
+                }
+
+                // Tous les champs requis sont remplis, procéder à l'ajout du produit
+                unset($_POST['addProduct']);
+                try {
+                    $article->ajouterArticle($_POST);
+                    $id_article = $article->getLastInsertedId();
+                    $this->importImage($id_article);
+                    $this->render("addProduct", ["categories" => $categories, "success" => true], true);
+                    return;
+                } catch (Exception $e) {
+                    $this->render("addProduct", ["categories" => $categories, "error" => $e->getMessage()], true);
+                    return;
                 }
             }
 
-            if (!empty($missing_fields)) {
-                $this->render("addProduct", ["categories" => $categories, "error" => "The following fields are required: " . implode(', ', $missing_fields)], true);
-                return;
-            }
-
-            // Tous les champs requis sont remplis, procéder à l'ajout du produit
-            unset($_POST['addProduct']);
-            try {
-                $article->ajouterArticle($_POST);
-                $id_article = $article->getLastInsertedId();
-                $this->importImage($id_article);
-                $this->render("addProduct", ["categories" => $categories, "success" => true], true);
-                return;
-            } catch (Exception $e) {
-                $this->render("addProduct", ["categories" => $categories, "error" => $e->getMessage()], true);
-                return;
-            }
+            $this->render("addProduct", ["categories" => $categories], true);
+            return;
+        } else {
+            header("Location: " . URI . "articles/index");
+            return;
         }
-
-        $this->render("addProduct", ["categories" => $categories], true);
-        return;
-    } else {
-        header("Location: " . URI . "articles/index");
-        return;
     }
-}
 
 
-function importImage($id_article)
+    function importImage($id_article)
     {
         if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
             $image_name = $_FILES["image"]["name"];
