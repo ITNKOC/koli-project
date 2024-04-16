@@ -119,8 +119,13 @@ class Articles extends Controllers
         $this->render("shop",["articles"=>$articles],false);
     }
 
-    public function productDetails(){
-        $this->render("productDetails");
+    public function productDetails($id_article){
+        $article=new Article();
+        $data=[
+            'id_article'=>$id_article
+        ];
+        $articles=$article->getProductById($data);
+        $this->render("productDetails",["articles"=>$articles]);
     }
 
 
