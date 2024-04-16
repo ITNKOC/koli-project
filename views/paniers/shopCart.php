@@ -19,112 +19,113 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shop__cart__table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
+                        <table>gc_collect_cycles</table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
                                 <?php 
                                 $cmd = 1; 
-                                var_dump($articles);
-                                foreach($articles as $cart_item) {
-                                    $quantite = $cart_item[0];
-                                    $article = $cart_item[1];
+                                
+                                foreach($articles as $articleInfo) {
+                                    $quantite = $articleInfo[0];
+                                    $article = $articleInfo[1];
                                 ?>
-                                        
-                                    <td class="cart__product__item">
-                                        <img src="<?= isset($article->chemin_image) ? URI . $article->chemin_image : URI . "assets/front/img/shop/shop-1.jpg" ?>">
-                                        <div class="cart__product__item__title">
-                                            <h6><?= $article->nom ?></h6>
+
+                                <td class="cart__product__item">
+                                    <img
+                                        src="<?= isset($articleInfo->chemin_image) ? URI . $articleInfo->chemin_image : URI . "assets/front/img/shop/shop-1.jpg" ?>">
+                                    <div class="cart__product__item__title">
+                                        <h6><?= $articleInfo->nomArticle ?></h6>
+                                    </div>
+                                </td>
+                                <td class="cart__price"><?= $articleInfo->prix ?>$</td>
+                                <td class="cart__quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1">
+                                    </div>
+                                </td>
+                                <td class="cart__total">$ 300.0</td>
+                                <td class="cart__close"><span class="icon_close"></span></td>
+                            </tr>
+                            <?php } ?>
+                            <tr>
+                                <td class="cart__product__item">
+                                    <img src="<?= URI."assets/front/img/shop-cart/cp-2.jpg"?>" alt="">
+                                    <div class="cart__product__item__title">
+                                        <h6><?= $articleInfo->nomArticle ?></h6>
+                                        <div class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
                                         </div>
-                                    </td>
-                                    <td class="cart__price"><?= $articleInfo->prix ?>$</td>
-                                    <td class="cart__quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
+                                    </div>
+                                </td>
+                                <td class="cart__price">$ 170.0</td>
+                                <td class="cart__quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1">
+                                    </div>
+                                </td>
+                                <td class="cart__total">$ 170.0</td>
+                                <td class="cart__close"><span class="icon_close"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="cart__product__item">
+                                    <img src="<?= URI."assets/front/img/shop-cart/cp-3.jpg"?>" alt="">
+                                    <div class="cart__product__item__title">
+                                        <h6>Black jean</h6>
+                                        <div class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
                                         </div>
-                                    </td>
-                                    <td class="cart__total">$ 300.0</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <?php } ?>
-                                <tr>
-                                    <td class="cart__product__item">
-                                        <img src="<?= URI."assets/front/img/shop-cart/cp-2.jpg"?>" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6><?= $article->nom ?></h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
+                                    </div>
+                                </td>
+                                <td class="cart__price">$ 85.0</td>
+                                <td class="cart__quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1">
+                                    </div>
+                                </td>
+                                <td class="cart__total">$ 170.0</td>
+                                <td class="cart__close"><span class="icon_close"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="cart__product__item">
+                                    <img src="<?= URI."assets/front/img/shop-cart/cp-4.jpg"?>" alt="">
+                                    <div class="cart__product__item__title">
+                                        <h6>Cotton Shirt</h6>
+                                        <div class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
                                         </div>
-                                    </td>
-                                    <td class="cart__price">$ 170.0</td>
-                                    <td class="cart__quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </td>
-                                    <td class="cart__total">$ 170.0</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__product__item">
-                                        <img src="<?= URI."assets/front/img/shop-cart/cp-3.jpg"?>" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6>Black jean</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 85.0</td>
-                                    <td class="cart__quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </td>
-                                    <td class="cart__total">$ 170.0</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__product__item">
-                                        <img src="<?= URI."assets/front/img/shop-cart/cp-4.jpg"?>" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6>Cotton Shirt</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 55.0</td>
-                                    <td class="cart__quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </td>
-                                    <td class="cart__total">$ 110.0</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                            </tbody>
+                                    </div>
+                                </td>
+                                <td class="cart__price">$ 55.0</td>
+                                <td class="cart__quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1">
+                                    </div>
+                                </td>
+                                <td class="cart__total">$ 110.0</td>
+                                <td class="cart__close"><span class="icon_close"></span></td>
+                            </tr>
+                        </tbody>
                         </table>
                     </div>
                 </div>
@@ -203,7 +204,8 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="<?= URI."assets/front/img/instagram/insta-5.jpg"?>">>
+                    <div class="instagram__item set-bg" data-setbg="<?= URI."assets/front/img/instagram/insta-5.jpg"?>">
+                        >
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -222,5 +224,3 @@
         </div>
     </div>
     <!-- Instagram End -->
-
-

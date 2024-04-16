@@ -1,4 +1,3 @@
-
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
     <div class="container">
@@ -54,7 +53,8 @@
                                     <li><a href="<?= isset($article->chemin_image) ? URI . $article->chemin_image : URI . "assets/front/img/shop/shop-1.jpg" ?>"
                                             class="image-popup"><span class="arrow_expand"></span></a></li>
                                     <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="<?=URI?>paniers/shopCart"><span class="icon_bag_alt"></span></a></li>
+                                    <li><a href="<?=URI?>paniers/ajouter/<?=$article->id_article?>"><span
+                                                class="icon_bag_alt"></span></a></li>
                                 </ul>
                             </div>
                             <div class="product__item__text">
