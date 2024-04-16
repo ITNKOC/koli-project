@@ -18,9 +18,12 @@
 <section class="product-details spad">
     <div class="container">
         <div class="row">
+            <?php if ($articles) : ?>
             <?php foreach($articles as $article) :?>
+
             <div class="col-lg-6">
                 <div class="product__details__pic">
+                    <?= var_dump($article)?>
                     <div class="product__details__pic__left product__thumb nice-scroll">
                         <a class="pt active" href="#product-1">
                             <img src="<?=(isset($article->chemin_image)) ?
@@ -103,6 +106,7 @@
                     </div>
                 </div>
                 <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
         <div class="row">
