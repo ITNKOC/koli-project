@@ -93,7 +93,6 @@
                                     </label>
                                 </th>
                                 <th>Category name</th>
-                                <th>Created By</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -107,11 +106,11 @@
                                     </label>
                                 </td>
                                 <td class="productimgname">
-                                    <a href=""><?= $category["nom_categorie"] ?></a>
+                                    <a href=""><?= $category->nom_categorie ?></a>
                                 </td>
 
                                 <td>
-                                    <a class="me-3" href="editcategory.html">
+                                    <a class="me-3" href=>
                                         <img src="<?= URI ?>assets/back/img/icons/edit.svg" alt="img">
                                     </a>
                                     <a class="me-3 confirm-text" href="">

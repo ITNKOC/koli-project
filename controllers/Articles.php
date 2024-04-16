@@ -131,6 +131,17 @@ function importImage($id_article)
             header("Location: " . URI . "Articles/admin");
         }
     }
+    public function editCategory($id_categorie){
+        if (is_numeric($id_categorie)) {
+            $categorie = new Article();
+            $data = [
+                "id_categorie" => $id_categorie
+            ];
+            $categorie->updateCategory($data);
+        
+        $this->render("editCategory",[],true);
+    }
+}
     public function categoryList(){
         $categorie = new Article;
         $categories = $categorie->getCategories();

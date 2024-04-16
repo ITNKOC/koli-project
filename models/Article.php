@@ -53,6 +53,11 @@ class Article extends Model
         $this->sql = "UPDATE " . $this->table . " SET nomArticle = :nomArticle, prix = :prix, desciption = :desciption, courte_description = :courte_description, quantite = :quantite WHERE id_article = :id";
         $this->getLines($data, null);
     }
+    public function updateCategory($data)
+    {
+        $this->sql = "UPDATE Categorie SET nom_categorie = :nom_categorie WHERE id_categorie = :id_categorie";
+        $this->getLines($data, null);
+    }
 
     public function delete($data)
     {
