@@ -25,35 +25,16 @@
                         </div>
                         <div class="categories__accordion">
                             <div class="accordion" id="accordionExample">
+                            <?php foreach ($categories as $category): ?>
                                 <div class="card">
                                     <div class="card-heading active">
-                                        <a data-toggle="collapse" data-target="#collapseOne">Women</a>
+                                        <a data-toggle="collapse" data-target="#collapseOne"><?= $category->nom_categorie; ?></a>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">Men</a>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseThree">Kids</a>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFour">Accessories</a>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFive">Cosmetic</a>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
             <div class="col-lg-9 col-md-9">
@@ -77,7 +58,7 @@
                             </div>
                             <div class="product__item__text">
                                 <div>
-                                <h6><a href="#"><?= $article->nomArticle; ?></a></h6>
+                                <h6><a href="<?= URI . "articles/productDetails/" . $article->id_ar; ?>"><?= $article->nomArticle; ?></a></h6>
                                 </div>
                                 <div class="product__price"><?= $article->prix; ?>$</div>
                             </div>
