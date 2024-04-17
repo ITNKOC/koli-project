@@ -19,7 +19,7 @@
                     <div class="col-lg-12">
                         <input href="javascript:void(0);" class="btn btn-submit me-2" type="submit"
                             name="addCategory" />
-                        <a href="categorylist.html" class="btn btn-cancel">Cancel</a>
+                        <a href="<?= URI."articles/categoryList " ?>" class="btn btn-cancel">Cancel</a>
                     </div>
 
                 </form>

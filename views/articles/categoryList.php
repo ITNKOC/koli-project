@@ -6,7 +6,7 @@
                 <h6>View/Search product Category</h6>
             </div>
             <div class="page-btn">
-                <a href="<?=URI?>views/articles/addCategory.php" class="btn btn-added">
+                <a href="<?=URI?>articles/addCategory" class="btn btn-added">
                     <img src="<?=URI ?>assets/back/img/icons/plus.svg" class="me-1" alt="img">Add Category
                 </a>
             </div>
@@ -110,7 +110,7 @@
                                 </td>
 
                                 <td>
-                                    <a class="me-3" href=>
+                                    <a class="me-3" href="<?= URI."articles/editCategory" ?>">
                                         <img src="<?= URI ?>assets/back/img/icons/edit.svg" alt="img">
                                     </a>
                                     <a class="me-3 confirm-text" href="">

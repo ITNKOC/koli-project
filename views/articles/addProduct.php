@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-lg-12">
                         <button type="submit" class="btn btn-submit me-2" name="addProduct">Submit</button>
-                        <a href="productlist.html" class="btn btn-cancel">Cancel</a>
+                        <a href="<?= URI."articles/categoryList " ?>" class="btn btn-cancel">Cancel</a>
                     </div>
                 </form>
             </div>
