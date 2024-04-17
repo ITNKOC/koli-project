@@ -11,9 +11,8 @@ class Paniers extends Controllers{
     }
 
     public function shopCart()
-    {
+    {   $articles=[];
         $panier = new Panier();
-        $articles = [];
         $articles = $panier->getAll();
         $this->render("shopCart",["articles"=>$articles] );
 
