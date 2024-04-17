@@ -36,14 +36,36 @@ class Article extends Model
 {
     $this->sql = "SELECT  a.id_article, 
     a.nomArticle, 
+    a.id_categorie,
     a.prix, 
     a.courte_description, 
     a.description, 
     a.statut, 
     a.quantite, 
-    i.chemin_image 
+    i.chemin_image,
+    c.nom_categorie 
     FROM " . $this->table . " AS a
     LEFT JOIN imagearticle AS i ON a.id_article = i.id_article 
+    LEFT JOIN Categorie AS c ON a.id_categorie = c.id_categorie
+    WHERE a.id_article = :id_article";
+
+    return $this->getLines($data, false);
+}
+public function getProductByIdPanier($data)
+{
+    $this->sql = "SELECT  a.id_article, 
+    a.nomArticle, 
+    a.id_categorie,
+    a.prix, 
+    a.courte_description, 
+    a.description, 
+    a.statut, 
+    a.quantite, 
+    i.chemin_image,
+    c.nom_categorie 
+    FROM " . $this->table . " AS a
+    LEFT JOIN imagearticle AS i ON a.id_article = i.id_article 
+    LEFT JOIN Categorie AS c ON a.id_categorie = c.id_categorie
     WHERE a.id_article = :id_article";
 
     return $this->getLines($data, true);
@@ -71,7 +93,22 @@ class Article extends Model
         $params = ['id_categorie' => $id_categorie];
         return $this->getLines($params ,true);
     }
+    public function getProductByCategory($data){
+        $this->sql = "SELECT  a.id_article, 
+        a.nomArticle, 
+        a.prix, 
+        a.courte_description, 
+        a.description, 
+        a.statut, 
+        a.quantite, 
+        i.chemin_image 
+        FROM " . $this->table . " AS a
+        LEFT JOIN imagearticle AS i ON a.id_article = i.id_article 
+        WHERE a.id_categorie = :id_categorie";
     
+        return $this->getLines($data, false);
+
+    }
     public function ajouterArticle($data)
     {
         $this->sql = "INSERT INTO " . $this->table . " (nomArticle, prix, courte_description, description, statut, quantite, id_categorie) 
@@ -92,10 +129,20 @@ class Article extends Model
 
     public function delete($data)
     {
+        $articleId = $data['id_article'];
+    
+        // Supprimer les images associées à l'article
+        $this->sql = "DELETE FROM imagearticle WHERE id_article = :id_article";
+        $this->getLines(['id_article' => $articleId], null);
+    
+        // Supprimer l'article lui-même
         $this->sql = "DELETE FROM " . $this->table . " WHERE id_article = :id_article";
-        $this->getLines($data, null);
+        $this->getLines(['id_article' => $articleId], null);
     }
-
+    public function deleteCategory($data){
+        $this->sql = "DELETE FROM categorie WHERE id_categorie=:id_categorie";
+        $this->getLines($data,null);
+    }
     public function findProductByName($data)
     {
         $this->sql = "SELECT * FROM " . $this->table . " WHERE nomArticle = :nomArticle";

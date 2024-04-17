@@ -148,6 +148,18 @@ class Articles extends Controllers
 
         $this->render("shop",["articles"=>$articles,"categories"=>$categories],false);
     }
+    public function shopFilterByCategory($id_categorie){
+        $articles = [];
+        $article = new Article();
+        $articles = $article->getProductByCategory(['id_categorie' => $id_categorie]);
+        
+        $categories = $article->getCategories();
+        if(!$articles){
+            $articles = [];
+            $this->render("shop", ["articles" => $articles, "categories" => $categories], false);
+        }
+        $this->render("shop", ["articles" => $articles, "categories" => $categories], false);
+    }
 
     public function productDetails($id_article){
         $article = new Article();
@@ -155,31 +167,33 @@ class Articles extends Controllers
             "id_article" => $id_article
         ];
         $articles = $article->getProductById($data);
-    
-        // Vérifier si des articles ont été récupérés
         if ($articles) {
-            // Articles trouvés, afficher la page des détails du produit
             $this->render("productDetails", ["articles" => $articles], false);
         } else {
-            // Aucun article trouvé avec cet identifiant, rediriger ou afficher un message d'erreur
-            // Exemple de redirection :
-            // header("Location: /erreur404"); 
-            // exit();
-            // Ou afficher un message d'erreur dans la vue
             echo "Aucun article trouvé avec cet identifiant.";
         }
     }
 
 
-    public function supprimer($id_Article)
+    public function supprimer($id_article)
     {
-        if (is_numeric($id_Article)) {
-            $Article = new Article();
+        if (is_numeric($id_article)) {
+            $article = new Article();
             $data = [
-                "id_Article" => $id_Article
+                "id_article" => $id_article
             ];
-            $Article->delete($data);
+            $article->delete($data);
             header("Location: " . URI . "Articles/productList");
+        }
+    }
+    public function supprimerCategory($id_categorie){
+        if (is_numeric($id_categorie)) {
+            $category = new Article();
+            $data = [
+                "id_categorie" => $id_categorie
+            ];
+            $category->deleteCategory($data);
+            header("Location: " . URI . "Articles/categoryList");
         }
     }
     public function editCategory($id_categorie) {

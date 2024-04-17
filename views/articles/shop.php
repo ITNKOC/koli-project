@@ -26,9 +26,11 @@
                         <div class="categories__accordion">
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
-                                    <?php foreach ($categories as  $category) : ?>
-                                    <div class="card-heading active">
-                                        <a href="koko.php"><?=  $category->nom_categorie ?></a>
+
+                                    <?php foreach ($categories as $category) : ?>
+                                    <div>
+                                        <a href="<?=URI?>articles/shopFilterByCategory/<?=$category->id_categorie?>"
+                                            style="color=black"><?=  $category->nom_categorie ?></a>
                                     </div>
                                     <?php endforeach;?>
                                 </div>
@@ -39,7 +41,7 @@
             </div>
             <div class="col-lg-9 col-md-9">
                 <div class="row">
-                    <?php foreach ($articles as $article) : ?>
+                    <?php foreach ($articles as $article) :?>
                     <div class="col-lg-4 col-md-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg"
@@ -61,7 +63,7 @@
                                 <h6><a
                                         href="<?=URI?>articles/productDetails/<?=$article->id_article?>"><?= $article->nomArticle; ?></a>
                                 </h6>
-                                <div class="product__price">$ <?= $article->prix; ?></div>
+                                <div class="product__price">$ <?= floatval($article->prix); ?></div>
                             </div>
                         </div>
                     </div>
