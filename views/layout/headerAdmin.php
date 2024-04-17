@@ -253,16 +253,10 @@
                             <a href="javascript:void(0);"><img src="<?=URI?>assets/back/img/icons/product.svg"
                                     alt="img"><span> Product</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="productlist.html">Product List</a></li>
+                                <li><a href="<?= URI."articles/productList " ?>">Product List</a></li>
                                 <li><a href="<?= URI."articles/addProduct " ?>">Add Product</a></li>
                                 <li><a href="<?= URI."articles/categoryList " ?>">Category List</a></li>
                                 <li><a href="<?= URI."articles/addCategory " ?>" class="active">Add Category</a></li>
-                                <li><a href="subcategorylist.html">Sub Category List</a></li>
-                                <li><a href="subaddcategory.html">Add Sub Category</a></li>
-                                <li><a href="brandlist.html">Brand List</a></li>
-                                <li><a href="addbrand.html">Add Brand</a></li>
-                                <li><a href="importproduct.html">Import Products</a></li>
-                                <li><a href="barcode.html">Print Barcode</a></li>
                             </ul>
                         </li>
                         <li class="submenu">

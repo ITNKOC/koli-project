@@ -73,9 +73,9 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="<?= URI."articles/index " ?>">Home</a></li>
-                            <li><a href="./shop">Shop</a></li>
-                            <li><a href="./blog">Blog</a></li>
-                            <li><a href="./contact">Contact</a></li>
+                            <li><a href="<?= URI."articles/shop" ?>">Shop</a></li>
+                            <li><a href="<?= URI."clients/blog " ?>">Blog</a></li>
+                            <li><a href="<?= URI."clients/contact " ?>">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
