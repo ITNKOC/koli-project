@@ -2,7 +2,7 @@
 
 
 session_start();
-define("URI", "http://localhost:/project/koli-project/");
+define("URI", "http://localhost:8888/project/koli-project/");
 define("ROOT", str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
 
 require_once ROOT . "autoload.php";
