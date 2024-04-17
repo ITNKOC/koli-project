@@ -109,12 +109,12 @@
                 <div class="cart__total__procced">
                     <h6>Cart total</h6>
                     <ul>
-                        <li>Subtotal <span>$ 750.0</span></li>
-                        <li>tva <span>$ 750.0</span></li>
-                        <li>tvq <span>$ 750.0</span></li>
-                        <li>Total <span>$ 750.0</span></li>
+                        <li>Subtotal :<span>$ 750.0</span></li>
+                        <li>tps : <span>$ 750.0</span></li>
+                        <li>tvq :<span>$ 750.0</span></li>
+                        <li>Total :<span>$ 750.0</span></li>
                     </ul>
-                    <a href="#" class="primary-btn">Proceed to checkout</a>
+                    <a href="<?=URI?>paniers/checkout" class="primary-btn">Proceed to checkout</a>
                 </div>
             </div>
         </div>
