@@ -26,14 +26,23 @@
                         <div class="categories__accordion">
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
-
-                                    <?php foreach ($categories as $category) : ?>
-                                    <div>
-                                        <a href="<?=URI?>articles/shopFilterByCategory/<?=$category->id_categorie?>"
-                                            style="color=black"><?=  $category->nom_categorie ?></a>
+                                    <div class="card-heading active">
+                                        <a data-toggle="collapse" data-target="#collapseOne">filter with Category</a>
                                     </div>
-                                    <?php endforeach;?>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <ul>
+                                                <?php foreach ($categories as $category) : ?>
+                                                <li><a
+                                                        href="<?=URI?>articles/shopFilterByCategory/<?=$category->id_categorie?>"><?=  $category->nom_categorie ?></a>
+                                                </li>
+                                                <?php endforeach;?>
+                                            </ul>
+                                        </div>
+                                    </div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>

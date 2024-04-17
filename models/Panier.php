@@ -38,7 +38,6 @@ class Panier{
             unset($_SESSION[self::PANIER][$id_article]);
         }
     }
-    var_dump($_SESSION[self::PANIER]);
     return $articles;
 }
 

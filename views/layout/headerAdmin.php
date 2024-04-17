@@ -259,7 +259,7 @@
                                 <li><a href="<?= URI."articles/addCategory " ?>" class="active">Add Category</a></li>
                             </ul>
                         </li>
-                        <li class="submenu">
+                        <!-- <li class="submenu">
                             <a href="javascript:void(0);"><img src="<?=URI?>assets/back/img/icons/sales1.svg"
                                     alt="img"><span> Sales</span> <span class="menu-arrow"></span></a>
                             <ul>
@@ -467,7 +467,7 @@
                                 <li><a href="grouppermissions.html">Group Permissions</a></li>
                                 <li><a href="taxrates.html">Tax Rates</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>

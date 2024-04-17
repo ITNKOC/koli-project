@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> Ashion </title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
@@ -19,6 +20,7 @@
         href="<?= URI."assets/front/fonts/fonts/material-icon/css/material-design-iconic-font.min.css"?>">
 
     <!-- Main css -->
+
     <link rel="stylesheet" href="<?= URI."assets/front/css/styleTemp.css"?>">
     <link rel="stylesheet" href="<?= URI."assets/front/css/bootstrap.min.css" ?>" type=" text/css">
     <link rel="stylesheet" href="<?= URI."assets/front/css/font-awesome.min.css"?>" type=" text/css">
@@ -70,7 +72,7 @@
                 <div class="col-xl-6 col-lg-7">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="<?= URI."articles/index " ?>">Home</a></li>
+                            <li><a href="<?= URI."articles/index " ?>">Home</a></li>
                             <li><a href="<?= URI."articles/shop" ?>">Shop</a></li>
                             <li><a href="<?= URI."clients/blog " ?>">Blog</a></li>
                             <li><a href="<?= URI."clients/contact " ?>">Contact</a></li>
