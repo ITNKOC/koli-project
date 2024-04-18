@@ -132,6 +132,7 @@
                 }).render('#paypal-button-container');// The PayPal.js library will load automatically for us 
                 </script>
             </div>
+            <p id="payment-message"></p>
             <?php
                 $subtotal = 0;
                 $tps = 0;
