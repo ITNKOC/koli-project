@@ -5,11 +5,6 @@ class Paniers extends Controllers{
         parent:: __construct();
     }
 
-    public function checkout()
-    {
-        $this->render("checkout");
-    }
-
     public function shopCart()
     {   $articles=[];
         $panier = new Panier();
@@ -17,12 +12,14 @@ class Paniers extends Controllers{
         $this->render("shopCart",["articles"=>$articles] );
 
     }
+
     public function ajouter($id_article){
 
         $panier = new Panier();
         $panier->ajouter($id_article, 1);
         header("Location: " . URI . "paniers/shopCart");
     }
+
     public function update($id_article){
         $panier = new Panier();
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateItemCart'])) {
@@ -31,9 +28,7 @@ class Paniers extends Controllers{
                 $panier->ajouter($id_article, $quantite);
                 header("Location: " . URI . "paniers/shopCart");
             } 
-        }   
-
-
+        } 
     }
 
     public function supprimer($id_article){
@@ -52,7 +47,4 @@ class Paniers extends Controllers{
             header("Location: " . URI . "paniers/shopCart");
         }
     }
-
-    
-
 }

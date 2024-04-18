@@ -97,24 +97,69 @@
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <div class="discount__content">
-                    <h6>Discount codes</h6>
-                    <form action="#">
-                        <input type="text" placeholder="Enter your coupon code">
-                        <button type="submit" class="site-btn">Apply</button>
-                    </form>
-                </div>
+            <?php
+            if(isset($_SESSION['utilisateur'])) {
+            ?>
+            <div id="paypal-button-container"></div>
+            <?php
+            }
+            ?>
+                                
+            <script src="https://www.paypal.com/sdk/js?client-id=AWPH_Lod75Xn1SZC5DhqsVSj7JCLAWk3ye5Q3gmTE2gxQ-sFAQhozdT9KUcFqA97D_SVOechGk4C0Xnn&components=buttons"></script>
+            <script>
+            paypal.Buttons({
+            // Sets up the transaction when a payment button is clicked
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '0.01'
+                            }
+                        }]
+                    });
+                },
+                // Finalize the transaction after payer approval
+                onApprove: async (data, actions) => {
+                // faire la redirection en javascript
+
+                request.url = "<?= URI . "commandes / commander"; ?>";
+
+                const order = await actions.order.capture();
+                console.log(order);
+                alert('Transaction completed by ' + order.payer.name.given_name);
+                }
+
+                }).render('#paypal-button-container');// The PayPal.js library will load automatically for us 
+                </script>
             </div>
+            <?php
+                $subtotal = 0;
+                $tps = 0;
+                $tvq = 0;
+
+                foreach ($articles as $article) {
+                    $quantite = $article[0];
+                    $article = $article[1];
+
+                    $subtotal += $article->prix * $quantite;
+                }
+
+                $tps = $subtotal * 0.05;
+
+                $tvq = $subtotal * 0.09975;
+
+                $total = $subtotal + $tps + $tvq;
+            ?>
             <div class="col-lg-4 offset-lg-2">
                 <div class="cart__total__procced">
                     <h6>Cart total</h6>
                     <ul>
-                        <li>Subtotal :<span>$ 750.0</span></li>
-                        <li>tps : <span>$ 750.0</span></li>
-                        <li>tvq :<span>$ 750.0</span></li>
-                        <li>Total :<span>$ 750.0</span></li>
+                        <li>Subtotal :<span><?=  number_format($subtotal, 2) ?> $</span></li>
+                        <li>tps : <span><?=  number_format($tps, 2) ?> $</span></li>
+                        <li>tvq :<span><?=  number_format($tvq, 2) ?> $</span></li>
+                        <li>Total :<span id="total"><?=  number_format($total, 2) ?> $</span></li>
                     </ul>
-                    <a href="<?=URI?>paniers/checkout" class="primary-btn">Proceed to checkout</a>
+                    <a href="<?=URI?>paniers/shopCart" class="primary-btn">Proceed to checkout</a>
                 </div>
             </div>
         </div>

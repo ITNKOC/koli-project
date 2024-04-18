@@ -88,11 +88,13 @@ public function getProductByIdPanier($data)
         $this->sql = "SELECT * FROM categorie";
         return $this->getLines([], false); 
     }
+    
     public function getCategoryById($id_categorie) {
         $this->sql = "SELECT * FROM Categorie WHERE id_categorie = :id_categorie";
         $params = ['id_categorie' => $id_categorie];
         return $this->getLines($params ,true);
     }
+
     public function getProductByCategory($data){
         $this->sql = "SELECT  a.id_article, 
         a.nomArticle, 
@@ -109,6 +111,7 @@ public function getProductByIdPanier($data)
         return $this->getLines($data, false);
 
     }
+
     public function ajouterArticle($data)
     {
         $this->sql = "INSERT INTO " . $this->table . " (nomArticle, prix, courte_description, description, statut, quantite, id_categorie) 
@@ -139,10 +142,12 @@ public function getProductByIdPanier($data)
         $this->sql = "DELETE FROM " . $this->table . " WHERE id_article = :id_article";
         $this->getLines(['id_article' => $articleId], null);
     }
+
     public function deleteCategory($data){
         $this->sql = "DELETE FROM categorie WHERE id_categorie=:id_categorie";
         $this->getLines($data,null);
     }
+    
     public function findProductByName($data)
     {
         $this->sql = "SELECT * FROM " . $this->table . " WHERE nomArticle = :nomArticle";

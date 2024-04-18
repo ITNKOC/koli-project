@@ -19,12 +19,13 @@ class Panier{
             $_SESSION[self::PANIER][$id_article] = $quantite;
         }
     }
+    
     public function supprimer($id){
         unset($_SESSION[self::PANIER][$id]);
     }
 
     public function getAll()
-{
+    {
     $articles = [];
     $articleModel = new Article();
 
@@ -39,9 +40,5 @@ class Panier{
         }
     }
     return $articles;
-}
-
-            
-
-    
+    }  
 }

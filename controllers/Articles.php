@@ -8,11 +8,11 @@ class Articles extends Controllers
         parent::__construct();
     }
 
-
     public function index()
     {
         $this->render("index");
     }
+
     public function addCategory()
     {
     if (isset($_SESSION['utilisateur']) && strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN) {
@@ -34,6 +34,7 @@ class Articles extends Controllers
         header("Location: " . URI . "articles/index");
     }
     }
+
     public function addProduct()
     {
         if (isset($_SESSION['utilisateur']) && strtolower($_SESSION['utilisateur']->description) === Auth::ADMIN) {
@@ -148,6 +149,7 @@ class Articles extends Controllers
 
         $this->render("shop",["articles"=>$articles,"categories"=>$categories],false);
     }
+
     public function shopFilterByCategory($id_categorie){
         $articles = [];
         $article = new Article();
@@ -186,6 +188,7 @@ class Articles extends Controllers
             header("Location: " . URI . "Articles/productList");
         }
     }
+
     public function supprimerCategory($id_categorie){
         if (is_numeric($id_categorie)) {
             $category = new Article();
@@ -196,6 +199,7 @@ class Articles extends Controllers
             header("Location: " . URI . "Articles/categoryList");
         }
     }
+
     public function editCategory($id_categorie) {
         $categorieModel = new Article();
         $category = $categorieModel->getCategoryById($id_categorie);
@@ -285,7 +289,4 @@ class Articles extends Controllers
             return;
         }
     }
-    
-
-
 }
