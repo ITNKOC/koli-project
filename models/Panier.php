@@ -15,10 +15,12 @@ class Panier{
             if($quantite==0){
                 unset($_SESSION[self::PANIER][$id_article]);
             }
+            
         
       
     }
-    
+
+
     public function supprimer($id){
         unset($_SESSION[self::PANIER][$id]);
     }
@@ -33,8 +35,6 @@ class Panier{
         if ($articleDetails) {
             $articles[] = [$quantite, $articleDetails];
         } else {
-            // Gérez le cas où l'article n'existe plus dans la base de données
-            // Par exemple, vous pouvez supprimer l'article du panier
             unset($_SESSION[self::PANIER][$id_article]);
         }
     }

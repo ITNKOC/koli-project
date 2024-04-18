@@ -36,9 +36,18 @@
                                 foreach($articles as $article) :
                                     $quantite = $article[0];
                                     $article = $article[1];
+                                    $subtotal = 0;
+                                    $tps = 0;
+                                    $tvq = 0;
+                                    $total = 0;
+                                    $subtotal += $article->prix * $quantite;
+                                    $tps = $subtotal * 0.05;
+                                    $tvq = $subtotal * 0.09975;
+                                    $total = $subtotal + $tps + $tvq;
+                                    $montant_formatte = number_format($total, 2, '.', '');
                                 ?>
                             <form method="post" action=<?= URI . "paniers/modifier/" . $article->id_article; ?>>
-                                <tr>
+                                
                                 <tr>
                                     <td class="cart__product__item">
                                         <img src="<?=URI.$article->chemin_image?>" alt="" width="70px" height="70px">
@@ -118,7 +127,7 @@
                         return actions.order.create({
                             purchase_units: [{
                                 amount: {
-                                    value: '0.01'
+                                    value: '<?= $montant_formatte ?>',
                                 }
                             }]
                         });
@@ -138,32 +147,17 @@
                 </script>
             </div>
             <p id="payment-message"></p>
-            <?php
-                $subtotal = 0;
-                $tps = 0;
-                $tvq = 0;
-
-                foreach ($articles as $article) {
-                    $quantite = $article[0];
-                    $article = $article[1];
-
-                    $subtotal += $article->prix * $quantite;
-                }
-
-                $tps = $subtotal * 0.05;
-
-                $tvq = $subtotal * 0.09975;
-
-                $total = $subtotal + $tps + $tvq;
-            ?>
             <div class="col-lg-4 offset-lg-2">
                 <div class="cart__total__procced">
                     <h6>Cart total</h6>
                     <ul>
+                    
                         <li>Subtotal :<span><?=  number_format($subtotal, 2) ?> $</span></li>
                         <li>tps : <span><?=  number_format($tps, 2) ?> $</span></li>
                         <li>tvq :<span><?=  number_format($tvq, 2) ?> $</span></li>
                         <li>Total :<span id="total"><?=  number_format($total, 2) ?> $</span></li>
+
+                    
                     </ul>
                     <a href="<?=URI?>paniers/shopCart" class="primary-btn">Proceed to checkout</a>
                 </div>
