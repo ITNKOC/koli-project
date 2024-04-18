@@ -30,13 +30,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <form method="post">
-                                <?php 
+
+                            <?php 
                                 $cmd = 1; 
                                 foreach($articles as $article) :
                                     $quantite = $article[0];
                                     $article = $article[1];
                                 ?>
+                            <form method="post" action=<?= URI . "paniers/modifier/" . $article->id_article; ?>>
                                 <tr>
                                 <tr>
                                     <td class="cart__product__item">
@@ -49,7 +50,8 @@
 
                                     <td class="cart__quantity">
                                         <div class="pro-qty">
-                                            <input type="text" value="<?= $quantite ?>" name="quantite">
+                                            <input name="quantite" type="number" value=<?= $quantite; ?> name="quantite"
+                                                min="0" max="<?= $article->quantite; ?>">
                                         </div>
                                     </td>
                                     <td class="cart__total"><?= ($article->prix)*$quantite?> $</td>
@@ -64,19 +66,20 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="<?=URI?>paniers/update/<?=$article->id_article?>">
-                                            <button type="submit" class="btn btn-secondary"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                    <path fill-rule="evenodd"
-                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                                                </svg></button>
-                                        </a>
+
+                                        <button type="submit" class="btn btn-secondary"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                                            </svg></button>
+
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
+
                             </form>
                         </tbody>
                     </table>
@@ -97,39 +100,41 @@
         </div>
         <div class="row">
             <div class="col-lg-6">
-            <?php
+                <?php
             if(isset($_SESSION['utilisateur'])) {
             ?>
-            <div id="paypal-button-container"></div>
-            <?php
+                <div id="paypal-button-container"></div>
+                <?php
             }
             ?>
-                                
-            <script src="https://www.paypal.com/sdk/js?client-id=AWPH_Lod75Xn1SZC5DhqsVSj7JCLAWk3ye5Q3gmTE2gxQ-sFAQhozdT9KUcFqA97D_SVOechGk4C0Xnn&components=buttons"></script>
-            <script>
-            paypal.Buttons({
-            // Sets up the transaction when a payment button is clicked
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '0.01'
-                            }
-                        }]
-                    });
-                },
-                // Finalize the transaction after payer approval
-                onApprove: async (data, actions) => {
-                // faire la redirection en javascript
 
-                request.url = "<?= URI . "commandes / commander"; ?>";
+                <script
+                    src="https://www.paypal.com/sdk/js?client-id=AWPH_Lod75Xn1SZC5DhqsVSj7JCLAWk3ye5Q3gmTE2gxQ-sFAQhozdT9KUcFqA97D_SVOechGk4C0Xnn&components=buttons">
+                </script>
+                <script>
+                paypal.Buttons({
+                    // Sets up the transaction when a payment button is clicked
+                    createOrder: function(data, actions) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: '0.01'
+                                }
+                            }]
+                        });
+                    },
+                    // Finalize the transaction after payer approval
+                    onApprove: async (data, actions) => {
+                        // faire la redirection en javascript
 
-                const order = await actions.order.capture();
-                console.log(order);
-                alert('Transaction completed by ' + order.payer.name.given_name);
-                }
+                        request.url = "<?= URI . "commandes / commander"; ?>";
 
-                }).render('#paypal-button-container');// The PayPal.js library will load automatically for us 
+                        const order = await actions.order.capture();
+                        console.log(order);
+                        alert('Transaction completed by ' + order.payer.name.given_name);
+                    }
+
+                }).render('#paypal-button-container'); // The PayPal.js library will load automatically for us 
                 </script>
             </div>
             <p id="payment-message"></p>

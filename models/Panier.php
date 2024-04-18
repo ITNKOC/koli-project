@@ -11,13 +11,12 @@ class Panier{
 
     public function ajouter($id_article, $quantite)
     {
-        if(isset($_SESSION[self::PANIER][$id_article])) {
-            // Si l'article existe déjà dans le panier, augmentez simplement la quantité
-            $_SESSION[self::PANIER][$id_article] += $quantite;
-        } else {
-            // Sinon, ajoutez l'article au panier
             $_SESSION[self::PANIER][$id_article] = $quantite;
-        }
+            if($quantite==0){
+                unset($_SESSION[self::PANIER][$id_article]);
+            }
+        
+      
     }
     
     public function supprimer($id){
